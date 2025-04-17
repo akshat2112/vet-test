@@ -1,0 +1,15 @@
+[package]
+name = "power-button-service"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Power button service built upon embedded service"
+repository = "https://github.com/OpenDevicePartnership/embedded-services"
+rust-version = "1.85"
+
+[dependencies]
+defmt = { workspace = true, optional = true }
+embassy-time.workspace = true
+embedded-hal-async.workspace = true
+embedded-hal.workspace = true
+log = { workspace = true, optional = true }

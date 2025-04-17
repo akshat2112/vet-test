@@ -1,0 +1,34 @@
+[package]
+name = "cfu-service"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+defmt = { workspace = true, optional = true }
+embassy-executor.workspace = true
+embassy-sync.workspace = true
+embassy-time.workspace = true
+embedded-cfu-protocol.workspace = true
+embedded-services.workspace = true
+heapless.workspace = true
+log = { workspace = true, optional = true }
+
+[features]
+default = []
+defmt = [
+    "dep:defmt",
+    "embedded-services/defmt",
+    "embassy-time/defmt",
+    "embassy-sync/defmt",
+    "embassy-executor/defmt",
+    "embedded-cfu-protocol/defmt",
+]
+log = [
+    "dep:log",
+    "embedded-services/log",
+    "embassy-time/log",
+    "embassy-sync/log",
+    "embassy-executor/log",
+    "embedded-cfu-protocol/log",
+]
