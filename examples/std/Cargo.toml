@@ -1,0 +1,54 @@
+[workspace]
+
+[package]
+name = "std-examples"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", features = [
+    "log",
+    "std",
+] }
+embassy-time-driver = { git = "https://github.com/embassy-rs/embassy", optional = true }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", features = [
+    "log",
+    "std",
+] }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", features = [
+    "arch-std",
+    "executor-thread",
+    "log",
+] }
+
+embedded-usb-pd = { git = "https://github.com/OpenDevicePartnership/embedded-usb-pd" }
+embedded-services = { path = "../../embedded-service", features = ["log"] }
+power-policy-service = { path = "../../power-policy-service", features = [
+    "log",
+] }
+cfu-service = { path = "../../cfu-service", features = ["log"] }
+embedded-cfu-protocol = { git = "https://github.com/OpenDevicePartnership/embedded-cfu" }
+
+embedded-batteries-async = { git = "https://github.com/OpenDevicePartnership/embedded-batteries" }
+battery-service = { path = "../../battery-service", features = ["log"] }
+type-c-service = { path = "../../type-c-service", features = ["log"] }
+
+env_logger = "0.9.0"
+log = "0.4.14"
+heapless = "0.8.0"
+static_cell = "2"
+embedded-hal-async = "1.0.0"
+embedded-hal-mock = { version = "0.11.1", features = ["embedded-hal-async"] }
+
+[[bin]]
+name = "type-c-basic"
+path = "src/bin/type_c/basic.rs"
+
+[[bin]]
+name = "type-c-service"
+path = "src/bin/type_c/service.rs"
+
+[[bin]]
+name = "type-c-external"
+path = "src/bin/type_c/external.rs"

@@ -93,9 +93,10 @@ ignore = [
 allow = [
     "MIT",
     "Apache-2.0",
-    "Unicode-3.0",
+    "Unicode-DFS-2016",
     "BSD-3-Clause",
-    #"Apache-2.0 WITH LLVM-exception",
+    # unicode-ident 1.0.14 switched from Unicode-DFS-2016 to Unicode-3.0 license.
+    "Unicode-3.0",
 ]
 # The confidence threshold for detecting a license from license text.
 # The higher the value, the more closely the license text must be to the
