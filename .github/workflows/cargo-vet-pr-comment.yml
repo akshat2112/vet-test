@@ -52,6 +52,7 @@ jobs:
 
       - name: 'Get comment ID'
         id: get-comment-id
+        if: ${{ steps.find-comment.outputs.comment-id != '' }}
         run: echo "comment-id=${{ steps.find-comment.outputs.comment-id }}" >> $GITHUB_OUTPUT
 
   post-comment-failure:
@@ -107,7 +108,7 @@ jobs:
       - name: 'Comment on PR - Success'
         # Only update the comment if it exists
         # This is to avoid creating a new comment if the cargo-vet job has never failed before
-        if: ${{ needs.find-pr-comment.outputs.comment-id }} != ''
+        if: ${{ needs.find-pr-comment.outputs.comment-id }}
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ needs.find-pr-comment.outputs.comment-id }}
