@@ -40,7 +40,7 @@ jobs:
       
       - name: 'Get PR number'
         id: get-pr-number
-        run: echo "::set-output name=pr_number::$(cat ./pr/NR)"
+        run: echo "pr_number=$(cat ./pr/NR)" >> $GITHUB_OUTPUT
       
       - name: 'Find existing comment'
         id: find-comment
@@ -66,13 +66,13 @@ jobs:
             # Cargo Vet Audit Failed
 
             `cargo vet` has failed in this PR. Please run `cargo vet --locked` locally to check for new or updated unvetted dependencies.
-            Details about the vetting process can be found in [README.md](../blob/main/supply-chain/README.md)
+            Details about the vetting process can be found in [supply-chain/README.md](../blob/main/supply-chain/README.md)
                       
             ## If the unvetted dependencies are not needed
             Please modify Cargo.toml file to avoid including the dependencies.
                       
             ## If the unvetted dependencies are needed
-            Post a new comment to the PR with your reasoning to help the auditors vet the dependencies.
+            Post a new comment with the questionnaire below to the PR to help the auditors vet the dependencies.
             After the auditors have vetted the dependencies, the PR will need to be rebased to pick up the new audits and pass this check.
                       
             ### Copy and paste the questionnaire as a new comment and provide your answers:
@@ -81,7 +81,7 @@ jobs:
                 
             **2. How many of the crates are version updates vs new dependencies?**
                 
-            **3. To confirm none of the already included crates serve the same purpose, please provide a brief description of the purpose of the new crates.**
+            **3. To confirm none of the already included crates serve your needs, please provide a brief description of the purpose of the new crates.**
                 
             **4. Any extra notes to the auditors to help with their audits.**
             
