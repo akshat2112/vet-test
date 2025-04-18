@@ -50,6 +50,8 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: 'comment-tag: [cargo-vet]'
 
+      - run: echo "comment-id=${{ steps.find-comment.outputs.comment-id }}" >> $GITHUB_OUTPUT
+
   post-comment-failure:
     # This job runs when the cargo-vet job fails
     # It will download the artifact from the failed job and post a comment on the PR
