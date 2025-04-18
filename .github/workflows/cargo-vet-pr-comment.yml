@@ -26,7 +26,7 @@ jobs:
     # It will download the artifact from the failed job and post a comment on the PR
     runs-on: ubuntu-latest
     outputs:
-      comment-id: ${{ steps.find-comment.outputs.comment-id }}
+      comment-id: ${{ steps.get-comment-id.outputs.comment-id }}
       pr-number: ${{ steps.get-pr-number.outputs.pr_number }}
     if: github.event.workflow_run.event == 'pull_request'
     steps:
@@ -50,7 +50,9 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: 'comment-tag: [cargo-vet]'
 
-      - run: echo "comment-id=${{ steps.find-comment.outputs.comment-id }}" >> $GITHUB_OUTPUT
+      - name: 'Get comment ID'
+        id: get-comment-id
+        run: echo "comment-id=${{ steps.find-comment.outputs.comment-id }}" >> $GITHUB_OUTPUT
 
   post-comment-failure:
     # This job runs when the cargo-vet job fails
